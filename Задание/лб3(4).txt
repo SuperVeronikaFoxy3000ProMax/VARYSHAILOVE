@@ -1,0 +1,18 @@
+from pathlib import Path
+import secrets
+
+# Укажите нужный файл ниже
+file_path = r'C:\Users\Студент\Documents\words.txt'
+
+try:
+    # Читаем строки из указанного файла
+    words = Path(file_path).read_text().splitlines()
+    
+    # Генерируем фразу-пароль из 4 случайных слов
+    passphrase = ' '.join(secrets.choice(words) for _ in range(4))
+    
+    print(f'Генерация пароля прошла успешно:\n{passphrase}')
+except FileNotFoundError:
+    print('Файл не найден.')
+except Exception as e:
+    print(f'Ошибка при чтении файла: {e}')
